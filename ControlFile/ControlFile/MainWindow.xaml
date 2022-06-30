@@ -1,0 +1,18 @@
+﻿<Window x:Class="ControlFile.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlFile"
+        mc:Ignorable="d"
+        Title="Control File - V1.0.1" Height="260" Width="350">
+    <Grid>
+        <Label x:Name="NumTrials_label" Content="Number of Repetitions:" HorizontalAlignment="Left" Height="25" Margin="50,30,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="NumTrials_textbox" HorizontalAlignment="Left" Height="25" Margin="190,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="Generate_button" Click="Generate_button_Click" Content="Create Test Sequence" HorizontalAlignment="Left" Height="50" Margin="50,140,0,0" VerticalAlignment="Top" Width="230"/>
+        <CheckBox x:Name="Visual_checkbox" Content="Visual" HorizontalAlignment="Left" Height="20" Margin="50,80,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="Auditory_checkbox" Content="Auditory" HorizontalAlignment="Left" Height="20" Margin="130,80,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="Haptic_checkbox" Content="Haptic" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80" Margin="210,80,0,0"/>
+
+    </Grid>
+</Window>

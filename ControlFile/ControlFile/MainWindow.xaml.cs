@@ -4,7 +4,7 @@ using System.Windows;
 using System.IO;
 using Ookii.Dialogs.Wpf;
 using Microsoft.Win32;
-
+using System.Windows.Automation;
 
 namespace ControlFile
 {
@@ -15,6 +15,9 @@ namespace ControlFile
     {
         static string[] possibleLoc = new string[] { "-3", "-2", "-1", "0", "1", "2", "3" };
         static Random rnd = new();
+        int[] mode = new int[3] { 0, 0, 0 };
+        bool congruentTrials;
+        bool incongruentTrials;
 
         public MainWindow()
         {
@@ -22,7 +25,7 @@ namespace ControlFile
             Visual_checkbox.IsChecked = true;
         }
 
-        private static bool CheckInput(string str, out int numInt)
+        private static bool CheckInput_Int(string str, out int numInt)
         {
             double num = 0;
             if (!double.TryParse(str,out num) || Double.IsNaN(num) || Double.IsInfinity(num))
@@ -33,6 +36,20 @@ namespace ControlFile
             }
             
             numInt = Convert.ToInt32(num);
+            return true;
+        }
+
+        private static bool CheckInput_Double(string str, out double numInt)
+        {
+            double num = 0;
+            if (!double.TryParse(str, out num) || Double.IsNaN(num) || Double.IsInfinity(num))
+            {
+                MessageBox.Show("Invalid input, please try again.");
+                numInt = 0;
+                return false;
+            }
+
+            numInt = Convert.ToDouble(num);
             return true;
         }
 
@@ -223,7 +240,7 @@ namespace ControlFile
         private void Generate_button_Click(object sender, RoutedEventArgs e)
         {
             int numTrials;
-            if (!CheckInput(NumTrials_textbox.Text, out numTrials)) { return; };
+            if (!CheckInput_Int(NumTrials_textbox.Text, out numTrials)) { return; };
 
             string mode = "";
             if(!SelectedMode(out mode)) { return; };
@@ -233,45 +250,96 @@ namespace ControlFile
             WriteLog2File(randomOrder, filePath, mode);
         }
 
-        private bool SelectedMode(out string mode)
+        private bool SelectedMode(out string mode_str)
         {
-            mode = "";
-            if (Visual_checkbox.IsChecked == true && Auditory_checkbox.IsChecked == false && Haptic_checkbox.IsChecked == false)
+            mode_str = "";
+            if (mode[0] + mode[1] + mode[2] == 0) 
             {
-                mode = "Visual";
+                MessageBox.Show("Please select a mode.");
+                return false;
             }
-            else if (Visual_checkbox.IsChecked == false && Auditory_checkbox.IsChecked == true && Haptic_checkbox.IsChecked == false)
-            {
-                mode = "Auditory";
-            }
-            else if (Visual_checkbox.IsChecked == false && Auditory_checkbox.IsChecked == false && Haptic_checkbox.IsChecked == true)
-            {
-                mode = "Haptic";
-            }
-            else if (Visual_checkbox.IsChecked == true && Auditory_checkbox.IsChecked == true && Haptic_checkbox.IsChecked == false)
-            {
-                mode = "VisualAuditory";
-            }
-            else if (Visual_checkbox.IsChecked == true && Auditory_checkbox.IsChecked == false && Haptic_checkbox.IsChecked == true)
-            {
-                mode = "VisualHaptic";
-            }
-            else if (Visual_checkbox.IsChecked == false && Auditory_checkbox.IsChecked == true && Haptic_checkbox.IsChecked == true)
-            {
-                mode = "AuditoryHaptic";
-            }
-            else if (Visual_checkbox.IsChecked == true && Auditory_checkbox.IsChecked == true && Haptic_checkbox.IsChecked == true)
-            {
-                mode = "VisualAuditoryHaptic";
-            }
-            else
-            {
-                MessageBox.Show("Invalid input, please select a mode.");
-            }
+            else if (mode[0] + mode[1] + mode[2] == 3 ) { mode_str = "VisualAuditoryHaptic"; }
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[0] == 0) { mode_str = "AuditoryHaptic"; }
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[1] == 0) { mode_str = "VidualHaptic"; }
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[2] == 0) { mode_str = "VidualAuditory"; }
+            else if (mode[0] + mode[1] + mode[2] == 1 && mode[0] == 1) { mode_str = "Visual"; }
+            else if (mode[0] + mode[1] + mode[2] == 1 && mode[1] == 1) { mode_str = "Auditory"; }
+            else if (mode[0] + mode[1] + mode[2] == 1 && mode[2] == 1) { mode_str = "HAptic"; }
 
-            return (!mode.Equals(""));
+            return true;
+
         }
 
+        private void Visual_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            mode[0] = 1;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
 
+        private void Auditory_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            mode[1] = 1;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
+
+        private void Haptic_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            mode[2] = 1;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
+
+        private void Visual_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mode[0] = 0;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
+
+        private void Auditory_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mode[1] = 0;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
+
+        private void Haptic_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mode[2] = 0;
+            if (mode[0] + mode[1] + mode[2] == 2) { TwoModeEnable(); }
+            else { TwoModeDisable(); }
+        }
+        private void TwoModeEnable()
+        {
+            CongruentAngle_textbox.IsEnabled = true;
+            Congruent_checkbox.IsEnabled = true;
+            Incongruent_checkbox.IsEnabled = true;
+        }
+        private void TwoModeDisable()
+        {
+            CongruentAngle_textbox.IsEnabled = false;
+            Congruent_checkbox.IsEnabled = false;
+            Incongruent_checkbox.IsEnabled = false;
+        }
+        private void Congruent_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Incongruent_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Congruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Incongruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

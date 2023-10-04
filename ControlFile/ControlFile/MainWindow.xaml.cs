@@ -13,11 +13,10 @@ namespace ControlFile
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string[] possibleLoc = new string[] { "-3", "-2", "-1", "0", "1", "2", "3" };
+        static double[] possibleLoc = new double[] { -3, -2, -1, 0, 1, 2, 3 };
         static Random rnd = new();
         int[] mode = new int[3] { 0, 0, 0 };
-        bool congruentTrials;
-        bool incongruentTrials;
+        double stimDiff;
 
         public MainWindow()
         {
@@ -39,22 +38,22 @@ namespace ControlFile
             return true;
         }
 
-        private static bool CheckInput_Double(string str, out double numInt)
+        private static bool CheckInput_Double(string str, out double numDouble)
         {
             double num = 0;
             if (!double.TryParse(str, out num) || Double.IsNaN(num) || Double.IsInfinity(num))
             {
                 MessageBox.Show("Invalid input, please try again.");
-                numInt = 0;
+                numDouble = 0;
                 return false;
             }
 
-            numInt = Convert.ToDouble(num);
+            numDouble = num;
             return true;
         }
 
         private static List<string> CreatePossibleTrials(string mode, int numTrials)
-        {
+        {            
             List<string> listTrials = new List<string>();
 
             if (mode.Equals("Visual"))
@@ -242,6 +241,7 @@ namespace ControlFile
             int numTrials;
             if (!CheckInput_Int(NumTrials_textbox.Text, out numTrials)) { return; };
 
+            if (CheckInput_Double())
             string mode = "";
             if(!SelectedMode(out mode)) { return; };
 

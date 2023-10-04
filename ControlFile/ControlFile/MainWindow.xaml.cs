@@ -314,32 +314,11 @@ namespace ControlFile
         private void TwoModeEnable()
         {
             CongruentAngle_textbox.IsEnabled = true;
-            Congruent_checkbox.IsEnabled = true;
-            Incongruent_checkbox.IsEnabled = true;
         }
         private void TwoModeDisable()
         {
             CongruentAngle_textbox.IsEnabled = false;
-            Congruent_checkbox.IsEnabled = false;
-            Incongruent_checkbox.IsEnabled = false;
         }
-        private void Congruent_checkbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Incongruent_checkbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Congruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Incongruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -19,10 +19,7 @@
         <Label x:Name="CongruentAngle_label" Content="Two Stim. Diff. (degree):" HorizontalAlignment="Left" Height="25" Margin="50,160,0,0" VerticalAlignment="Top" Width="140"/>
         <TextBox x:Name="CongruentAngle_textbox" HorizontalAlignment="Left" Height="25" Margin="190,160,0,0" TextWrapping="Wrap" Text="1.5" VerticalAlignment="Top" Width="100" IsEnabled="False"/>
 
-        <CheckBox x:Name="Congruent_checkbox" Content="Congruent Trials" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="120" Margin="50,200,0,0" IsEnabled="False" Checked="Congruent_checkbox_Checked" Unchecked="Congruent_checkbox_Unchecked"/>
-        <CheckBox x:Name="Incongruent_checkbox" Content="Incongruent Trials" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="120" Margin="170,200,0,0" IsEnabled="False" Checked="Incongruent_checkbox_Checked" Unchecked="Incongruent_checkbox_Unchecked"/>
-        
-        <Button x:Name="Generate_button" Click="Generate_button_Click" Content="Create Test Sequence" HorizontalAlignment="Center" Height="50" Margin="0,250,0,0" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="Generate_button" Click="Generate_button_Click" Content="Create Test Sequence" HorizontalAlignment="Center" Height="50" Margin="0,230,0,0" VerticalAlignment="Top" Width="250"/>
 
     </Grid>
 </Window>

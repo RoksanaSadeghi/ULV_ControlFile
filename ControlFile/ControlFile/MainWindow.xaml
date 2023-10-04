@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControlFile"
         mc:Ignorable="d"
-        Title="Control File - V1.0.1" Height="260" Width="350">
+        Title="Control File - V1.0.1" Height="260" Width="350" ResizeMode="CanResize" HorizontalAlignment="Stretch">
     <Grid>
-        <Label x:Name="NumTrials_label" Content="Number of Repetitions:" HorizontalAlignment="Left" Height="25" Margin="50,30,0,0" VerticalAlignment="Top" Width="140"/>
-        <TextBox x:Name="NumTrials_textbox" HorizontalAlignment="Left" Height="25" Margin="190,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="Offset_label" Content="Offset:" HorizontalAlignment="Left" Height="25" Margin="50,18,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="Offset_textbox" HorizontalAlignment="Left" Height="20" Margin="190,23,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="NumTrials_label" Content="Number of Repetitions:" HorizontalAlignment="Left" Height="25" Margin="50,52,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="NumTrials_textbox" HorizontalAlignment="Left" Height="20" Margin="190,55,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="80"/>
         <Button x:Name="Generate_button" Click="Generate_button_Click" Content="Create Test Sequence" HorizontalAlignment="Left" Height="50" Margin="50,140,0,0" VerticalAlignment="Top" Width="230"/>
-        <CheckBox x:Name="Visual_checkbox" Content="Visual" HorizontalAlignment="Left" Height="20" Margin="50,80,0,0" VerticalAlignment="Top" Width="80"/>
-        <CheckBox x:Name="Auditory_checkbox" Content="Auditory" HorizontalAlignment="Left" Height="20" Margin="130,80,0,0" VerticalAlignment="Top" Width="80"/>
-        <CheckBox x:Name="Haptic_checkbox" Content="Haptic" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80" Margin="210,80,0,0"/>
-
+        <CheckBox x:Name="Visual_checkbox" Content="Visual" HorizontalAlignment="Left" Height="20" Margin="50,102,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="Auditory_checkbox" Content="Auditory" HorizontalAlignment="Left" Height="20" Margin="130,102,0,0" VerticalAlignment="Top" Width="80"/>
+        <CheckBox x:Name="Haptic_checkbox" Content="Haptic" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80" Margin="210,102,0,0"/>
     </Grid>
 </Window>

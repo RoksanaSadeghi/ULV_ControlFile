@@ -13,11 +13,9 @@ namespace ControlFile
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string[] possibleLoc = new string[] { "-3", "-2", "-1", "0", "1", "2", "3" };
+        static double[] possibleLoc = new double[] { -3, -2, -1, 0, 1, 2, 3 };
         static Random rnd = new();
         int[] mode = new int[3] { 0, 0, 0 };
-        bool congruentTrials;
-        bool incongruentTrials;
 
         public MainWindow()
         {
@@ -39,31 +37,39 @@ namespace ControlFile
             return true;
         }
 
-        private static bool CheckInput_Double(string str, out double numInt)
+        private static bool CheckInput_Double(string str, out double numDouble)
         {
             double num = 0;
             if (!double.TryParse(str, out num) || Double.IsNaN(num) || Double.IsInfinity(num))
             {
                 MessageBox.Show("Invalid input, please try again.");
-                numInt = 0;
+                numDouble = 0;
                 return false;
             }
 
-            numInt = Convert.ToDouble(num);
+            numDouble = num;
             return true;
         }
 
-        private static List<string> CreatePossibleTrials(string mode, int numTrials)
+        private static List<string> CreatePossibleTrials(string mode, int numTrials, double stimLoc, double stimDiff)
         {
+            // apply stimLoc to the possibleLoc
+            for (int i = 0; i < possibleLoc.Length; i++)
+            {
+                possibleLoc[i] = possibleLoc[i] * stimLoc;
+            }
+
+            // initiate the trials list
             List<string> listTrials = new List<string>();
 
+            // create trials based on the selected mode
             if (mode.Equals("Visual"))
             {
                 for (int i = 0; i < numTrials; i++)
                 {
                     for (int j = 0; j < possibleLoc.Length; j++)
                     {
-                        listTrials.Add("0,,," + possibleLoc[j]+",,");
+                        listTrials.Add(possibleLoc[j].ToString()+",,");
                     }
                 }
             }
@@ -74,91 +80,38 @@ namespace ControlFile
                 {
                     for (int j = 0; j < possibleLoc.Length; j++)
                     {
-                        listTrials.Add(",0,," + ","+possibleLoc[j] + ",");
+                        listTrials.Add("," + possibleLoc[j].ToString() + ",");
                     }
                 }
             }
-
-            if (mode.Equals("Haptic"))
-            {
-                for (int i = 0; i < numTrials; i++)
-                {
-                    for (int j = 0; j < possibleLoc.Length; j++)
-                    {
-                        listTrials.Add(",,0," + ",," + possibleLoc[j]);
-                    }
-                }
-            }
-
+            
             if (mode.Equals("VisualAuditory"))
             {
-                string tmp = "0";
                 for (int i = 0; i < numTrials; i++)
                 {
                     for (int j = 0; j < possibleLoc.Length; j++)
                     {
-                        if (rnd.NextDouble() < 0.5) { tmp = possibleLoc[(possibleLoc.Length-1) - j]; }
-                        else { tmp = "0"; }
-                        listTrials.Add("0,0,," + possibleLoc[j] + "," + tmp + ",");
+                        List<string> trial_2stims = new List<string>();
+                        trial_2stims.Add((possibleLoc[j] - (stimDiff / 2)).ToString());
+                        trial_2stims.Add((possibleLoc[j] + (stimDiff / 2)).ToString());
+                        List<string> tmp = Randomize(trial_2stims);
+                        listTrials.Add(tmp[0] + "," + tmp[1] + ",");
                     }
                 }
 
             }
 
-            if (mode.Equals("VisualHaptic"))
+            List<string> listTrialsFinal = new List<string>(); 
+            for (int i = 0; i < listTrials.Count; i++)
             {
-                string tmp = "0";
-                for (int i = 0; i < numTrials; i++)
-                {
-                    for (int j = 0; j < possibleLoc.Length; j++)
-                    {
-                        if (rnd.NextDouble() < 0.5) { tmp = possibleLoc[(possibleLoc.Length-1) - j]; }
-                        else { tmp = "0"; }
-                        listTrials.Add("0,,0," + possibleLoc[j] + ",," + tmp);
-                    }
-                }
+                List<string> trialString = new List<string>();
+                trialString.Add("0,0,0");
+                trialString.Add(listTrials[i]);
+                List<string> tmp = Randomize(trialString);
+                listTrialsFinal.Add(tmp[0] + "," + tmp[1]);
             }
 
-            if (mode.Equals("AuditoryHaptic"))
-            {
-                string tmp = "0";
-                for (int i = 0; i < numTrials; i++)
-                {
-                    for (int j = 0; j < possibleLoc.Length; j++)
-                    {
-                        if (rnd.NextDouble() < 0.5) { tmp = possibleLoc[(possibleLoc.Length-1) - j]; }
-                        else { tmp = "0"; }
-                        listTrials.Add(",0,0," + "," + tmp + "," + possibleLoc[j]);
-                    }
-                }
-            }
-
-            if (mode.Equals("VisualAuditoryHaptic"))
-            {
-
-                List<string> listtmp = new List<string>();
-                for (int i = 0; i < numTrials; i++)
-                {
-                    for (int j = 0; j < possibleLoc.Length; j++)
-                    {
-                        listtmp.Add(possibleLoc[j]);
-                    }
-                }
-                
-                string tmp = "0";
-                for (int i = 0; i < numTrials; i++)
-                {
-                    List<string> randHap = Randomize(listtmp);
-                    for (int j = 0; j < possibleLoc.Length; j++)
-                    {
-                        if (rnd.NextDouble() < 0.5) { tmp = possibleLoc[(possibleLoc.Length-1) - j]; }
-                        else { tmp = "0"; }
-                        listTrials.Add("0,0,0," + possibleLoc[j] + "," + tmp + "," + randHap[i+j]);
-                    }
-                }
-            }
-
-            return listTrials;
+            return listTrialsFinal;
         } 
 
         private static List<string> Randomize(List<string> input)
@@ -186,7 +139,7 @@ namespace ControlFile
 
             return output;
         }
-
+        
         private static string SelectSavingDirectory()
         {
             string output_directory = "";
@@ -239,15 +192,26 @@ namespace ControlFile
 
         private void Generate_button_Click(object sender, RoutedEventArgs e)
         {
+            // check the inputs
             int numTrials;
             if (!CheckInput_Int(NumTrials_textbox.Text, out numTrials)) { return; };
+            
+            double stimLoc = 1;
+            if (!CheckInput_Double(StimLoc_textbox.Text, out stimLoc)) { return; };
+            
+            double stimDiff = 0;
+            if (!CheckInput_Double(CongruentAngle_textbox.Text, out stimDiff) && mode[0]+ mode[1]+ mode[2] >= 2) { return; };
 
-            string mode = "";
-            if(!SelectedMode(out mode)) { return; };
+            string modeStr = "";
+            if(!SelectedMode(out modeStr)) { return; };
 
-            List<string> randomOrder = Randomize(CreatePossibleTrials(mode, numTrials));
-            string filePath = SelectSavingDirectory().Replace(".txt","") + "_controlFile_" + mode + ".txt";
-            WriteLog2File(randomOrder, filePath, mode);
+            // create the trials
+            List<string> trials = CreatePossibleTrials(modeStr, numTrials, stimLoc, stimDiff);
+
+            // randomize the trials order
+            List<string> randomOrder = Randomize(trials);
+            string filePath = SelectSavingDirectory().Replace(".txt","") + "_controlFile_" + modeStr + ".txt";
+            WriteLog2File(randomOrder, filePath, modeStr);
         }
 
         private bool SelectedMode(out string mode_str)
@@ -259,12 +223,10 @@ namespace ControlFile
                 return false;
             }
             else if (mode[0] + mode[1] + mode[2] == 3 ) { mode_str = "VisualAuditoryHaptic"; }
-            else if (mode[0] + mode[1] + mode[2] == 2 && mode[0] == 0) { mode_str = "AuditoryHaptic"; }
-            else if (mode[0] + mode[1] + mode[2] == 2 && mode[1] == 0) { mode_str = "VidualHaptic"; }
-            else if (mode[0] + mode[1] + mode[2] == 2 && mode[2] == 0) { mode_str = "VidualAuditory"; }
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[2] == 0) { mode_str = "VisualAuditory"; }
             else if (mode[0] + mode[1] + mode[2] == 1 && mode[0] == 1) { mode_str = "Visual"; }
             else if (mode[0] + mode[1] + mode[2] == 1 && mode[1] == 1) { mode_str = "Auditory"; }
-            else if (mode[0] + mode[1] + mode[2] == 1 && mode[2] == 1) { mode_str = "HAptic"; }
+
 
             return true;
 
@@ -314,32 +276,11 @@ namespace ControlFile
         private void TwoModeEnable()
         {
             CongruentAngle_textbox.IsEnabled = true;
-            Congruent_checkbox.IsEnabled = true;
-            Incongruent_checkbox.IsEnabled = true;
         }
         private void TwoModeDisable()
         {
             CongruentAngle_textbox.IsEnabled = false;
-            Congruent_checkbox.IsEnabled = false;
-            Incongruent_checkbox.IsEnabled = false;
         }
-        private void Congruent_checkbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Incongruent_checkbox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Congruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Incongruent_checkbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

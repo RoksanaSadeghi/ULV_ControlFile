@@ -13,4 +13,10 @@
     <SourceRoot Include="C:\Users\roksa\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)gitversion.msbuild\5.12.0\build\GitVersion.MsBuild.props" Condition="Exists('$(NuGetPackageRoot)gitversion.msbuild\5.12.0\build\GitVersion.MsBuild.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgGitVersion_MsBuild Condition=" '$(PkgGitVersion_MsBuild)' == '' ">C:\Users\roksa\.nuget\packages\gitversion.msbuild\5.12.0</PkgGitVersion_MsBuild>
+  </PropertyGroup>
 </Project>

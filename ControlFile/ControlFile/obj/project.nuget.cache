@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gARnHcrj/4ic2cos18FovirXrww4rgqGfbTXNuYJFZT9OvXqzOnYR+haXbnDi76m1Tgsb19sU7NhxU6o6xzF9g==",
+  "dgSpecHash": "bLPGnExn0zCANQbb333EGLJUEHoJz6csmdiTVKeRoIa05dtbkThilgabKHuE1XRSZDIc27+aGBazHWumZwqoAQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\roksa\\Documents\\gitRepo\\AK_ControlFile\\ControlFile\\ControlFile\\ControlFile.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\roksa\\.nuget\\packages\\gitversion.msbuild\\5.12.0\\gitversion.msbuild.5.12.0.nupkg.sha512",
     "C:\\Users\\roksa\\.nuget\\packages\\ookii.dialogs.wpf\\5.0.1\\ookii.dialogs.wpf.5.0.1.nupkg.sha512"
   ],
   "logs": []

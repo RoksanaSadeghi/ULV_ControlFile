@@ -44,3 +44,5 @@ C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Rele
 C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\ControlFile.pdb
 C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\ControlFile.genruntimeconfig.cache
 C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\ref\ControlFile.dll
+C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\AssemblyInfo.g.cs
+C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\GitVersionInformation.g.cs

@@ -1,5 +1,5 @@
 ﻿ControlFile
-
+2.0.0.0
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\App.xaml
 11407045341
 
-3-1233169557
+5405187385
 2041388409015
 MainWindow.xaml;
 

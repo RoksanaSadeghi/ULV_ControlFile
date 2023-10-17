@@ -28,7 +28,7 @@ namespace System.Diagnostics.CodeAnalysis
 [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 static class GitVersionInformation
 {
-    public static string Major = "0";
+    public static string Major = "2";
     public static string Minor = "1";
     public static string Patch = "0";
     public static string PreReleaseTag = "";
@@ -37,28 +37,28 @@ static class GitVersionInformation
     public static string PreReleaseLabelWithDash = "";
     public static string PreReleaseNumber = "";
     public static string WeightedPreReleaseNumber = "60000";
-    public static string BuildMetaData = "7";
-    public static string BuildMetaDataPadded = "0007";
-    public static string FullBuildMetaData = "7.Branch.main.Sha.20b4405a79063281c6a229d94a1245cb9f7f5abd";
-    public static string MajorMinorPatch = "0.1.0";
-    public static string SemVer = "0.1.0";
-    public static string LegacySemVer = "0.1.0";
-    public static string LegacySemVerPadded = "0.1.0";
-    public static string AssemblySemVer = "0.1.0.0";
-    public static string AssemblySemFileVer = "0.1.0.0";
-    public static string FullSemVer = "0.1.0+7";
-    public static string InformationalVersion = "0.1.0+7.Branch.main.Sha.20b4405a79063281c6a229d94a1245cb9f7f5abd";
+    public static string BuildMetaData = "";
+    public static string BuildMetaDataPadded = "";
+    public static string FullBuildMetaData = "Branch.main.Sha.6886946feac40b1d913530787065001068eaed94";
+    public static string MajorMinorPatch = "2.1.0";
+    public static string SemVer = "2.1.0";
+    public static string LegacySemVer = "2.1.0";
+    public static string LegacySemVerPadded = "2.1.0";
+    public static string AssemblySemVer = "2.1.0.0";
+    public static string AssemblySemFileVer = "2.1.0.0";
+    public static string FullSemVer = "2.1.0";
+    public static string InformationalVersion = "2.1.0+Branch.main.Sha.6886946feac40b1d913530787065001068eaed94";
     public static string BranchName = "main";
     public static string EscapedBranchName = "main";
-    public static string Sha = "20b4405a79063281c6a229d94a1245cb9f7f5abd";
-    public static string ShortSha = "20b4405";
-    public static string NuGetVersionV2 = "0.1.0";
-    public static string NuGetVersion = "0.1.0";
+    public static string Sha = "6886946feac40b1d913530787065001068eaed94";
+    public static string ShortSha = "6886946";
+    public static string NuGetVersionV2 = "2.1.0";
+    public static string NuGetVersion = "2.1.0";
     public static string NuGetPreReleaseTagV2 = "";
     public static string NuGetPreReleaseTag = "";
-    public static string VersionSourceSha = "ca5cbf62e5a998f3fef9a2ea9e9e9ad5245beeb8";
-    public static string CommitsSinceVersionSource = "7";
-    public static string CommitsSinceVersionSourcePadded = "0007";
-    public static string UncommittedChanges = "3";
-    public static string CommitDate = "2023-10-05";
+    public static string VersionSourceSha = "6886946feac40b1d913530787065001068eaed94";
+    public static string CommitsSinceVersionSource = "0";
+    public static string CommitsSinceVersionSourcePadded = "0000";
+    public static string UncommittedChanges = "17";
+    public static string CommitDate = "2023-10-17";
 }

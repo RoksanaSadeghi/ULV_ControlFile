@@ -67,3 +67,5 @@ C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\Control
 C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Debug\net6.0-windows\ControlFile.pdb
 C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Debug\net6.0-windows\ControlFile.genruntimeconfig.cache
 C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Debug\net6.0-windows\ref\ControlFile.dll
+C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Debug\net6.0-windows\AssemblyInfo.g.cs
+C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Debug\net6.0-windows\GitVersionInformation.g.cs

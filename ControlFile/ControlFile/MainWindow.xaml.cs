@@ -105,7 +105,13 @@ namespace ControlFile
             for (int i = 0; i < listTrials.Count; i++)
             {
                 List<string> trialString = new List<string>();
-                trialString.Add("0,0,0");
+                if (mode.Equals("Visual"))
+                    trialString.Add("0,,");
+                else if(mode.Equals("Auditory"))
+                    trialString.Add(",0,");
+                else if(mode.Equals("VisualAuditory"))
+                    trialString.Add("0,0,");
+                
                 trialString.Add(listTrials[i]);
                 List<string> tmp = Randomize(trialString);
                 listTrialsFinal.Add(tmp[0] + "," + tmp[1]);
@@ -192,6 +198,7 @@ namespace ControlFile
 
         private void Generate_button_Click(object sender, RoutedEventArgs e)
         {
+            possibleLoc = new double[] { -3, -2, -1, 0, 1, 2, 3 };
             // check the inputs
             int numTrials;
             if (!CheckInput_Int(NumTrials_textbox.Text, out numTrials)) { return; };

@@ -1,19 +1,19 @@
 ﻿ControlFile
-2.0.0.0
+0.1.0.0
 
 winexe
 C#
 .cs
-C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\
+C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\obj\Release\net6.0-windows\
 ControlFile
 none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
-C:\Users\roksa\Documents\gitRepo\AK_ControlFile\ControlFile\ControlFile\App.xaml
+C:\Users\roksana.s.sadeghi\Documents\gitRepos\AK_ControlFile\ControlFile\ControlFile\App.xaml
 11407045341
 
 5405187385
-2041388409015
+204256500693
 MainWindow.xaml;
 
 False

@@ -11,7 +11,7 @@
         <TextBox x:Name="NumTrials_textbox" HorizontalAlignment="Left" Height="25" Margin="190,30,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="100"/>
         <CheckBox x:Name="Visual_checkbox" Content="Visual" HorizontalAlignment="Left" Height="20" Margin="50,80,0,0" VerticalAlignment="Top" Width="80" Checked="Visual_checkbox_Checked" Unchecked="Visual_checkbox_Unchecked"/>
         <CheckBox x:Name="Auditory_checkbox" Content="Auditory" HorizontalAlignment="Left" Height="20" Margin="140,80,0,0" VerticalAlignment="Top" Width="80" Checked="Auditory_checkbox_Checked" Unchecked="Auditory_checkbox_Unchecked"/>
-        <CheckBox x:Name="Haptic_checkbox" Content="Haptic" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80" Margin="230,80,0,0" IsEnabled="False" Checked="Haptic_checkbox_Checked" Unchecked="Haptic_checkbox_Unchecked"/>
+        <CheckBox x:Name="Haptic_checkbox" Content="Haptic" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="80" Margin="230,80,0,0" Checked="Haptic_checkbox_Checked" Unchecked="Haptic_checkbox_Unchecked"/>
 
         <Label x:Name="StimLoc_label" Content="Stim. Location (degree):" HorizontalAlignment="Left" Height="25" Margin="50,120,0,0" VerticalAlignment="Top" Width="140"/>
         <TextBox x:Name="StimLoc_textbox" HorizontalAlignment="Left" Height="25" Margin="190,120,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="100"/>

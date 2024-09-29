@@ -84,7 +84,19 @@ namespace ControlFile
                     }
                 }
             }
-            
+
+            if (mode.Equals("Haptic"))
+            {
+                for (int i = 0; i < numTrials; i++)
+                {
+                    for (int j = 0; j < possibleLoc.Length; j++)
+                    {
+                        listTrials.Add(",," + possibleLoc[j].ToString());
+                    }
+                }
+            }
+
+
             if (mode.Equals("VisualAuditory"))
             {
                 for (int i = 0; i < numTrials; i++)
@@ -101,6 +113,50 @@ namespace ControlFile
 
             }
 
+            if (mode.Equals("VisualHaptic"))
+            {
+                for (int i = 0; i < numTrials; i++)
+                {
+                    for (int j = 0; j < possibleLoc.Length; j++)
+                    {
+                        List<string> trial_2stims = new List<string>();
+                        trial_2stims.Add((possibleLoc[j] - (stimDiff / 2)).ToString());
+                        trial_2stims.Add((possibleLoc[j] + (stimDiff / 2)).ToString());
+                        List<string> tmp = Randomize(trial_2stims);
+                        listTrials.Add(tmp[0] + ",," + tmp[1]);
+                    }
+                }
+
+            }
+
+            if (mode.Equals("AuditoryHaptic"))
+            {
+                for (int i = 0; i < numTrials; i++)
+                {
+                    for (int j = 0; j < possibleLoc.Length; j++)
+                    {
+                        List<string> trial_2stims = new List<string>();
+                        trial_2stims.Add((possibleLoc[j] - (stimDiff / 2)).ToString());
+                        trial_2stims.Add((possibleLoc[j] + (stimDiff / 2)).ToString());
+                        List<string> tmp = Randomize(trial_2stims);
+                        listTrials.Add("," + tmp[0] + "," + tmp[1]);
+                    }
+                }
+
+            }
+
+            if (mode.Equals("VisualAuditoryHaptic"))
+            {
+                for (int i = 0; i < numTrials; i++)
+                {
+                    for (int j = 0; j < possibleLoc.Length; j++)
+                    {
+                        listTrials.Add(possibleLoc[j].ToString() + "," + possibleLoc[j].ToString() + "," + possibleLoc[j].ToString());
+                    }
+                }
+            }
+
+
             List<string> listTrialsFinal = new List<string>(); 
             for (int i = 0; i < listTrials.Count; i++)
             {
@@ -111,7 +167,17 @@ namespace ControlFile
                     trialString.Add(",0,");
                 else if(mode.Equals("VisualAuditory"))
                     trialString.Add("0,0,");
-                
+                else if (mode.Equals("Haptic"))
+                    trialString.Add(",,0");
+                else if (mode.Equals("VisualHaptic"))
+                    trialString.Add("0,,0");
+                else if (mode.Equals("AuditoryHaptic"))
+                    trialString.Add(",0,0");
+                else if (mode.Equals("VisualAuditoryHaptic"))
+                    trialString.Add("0,0,0");
+
+
+
                 trialString.Add(listTrials[i]);
                 List<string> tmp = Randomize(trialString);
                 listTrialsFinal.Add(tmp[0] + "," + tmp[1]);
@@ -207,7 +273,7 @@ namespace ControlFile
             if (!CheckInput_Double(StimLoc_textbox.Text, out stimLoc)) { return; };
             
             double stimDiff = 0;
-            if (!CheckInput_Double(CongruentAngle_textbox.Text, out stimDiff) && mode[0]+ mode[1]+ mode[2] >= 2) { return; };
+            if (!CheckInput_Double(CongruentAngle_textbox.Text, out stimDiff) && mode[0]+ mode[1]+ mode[2] == 2) { return; };
 
             string modeStr = "";
             if(!SelectedMode(out modeStr)) { return; };
@@ -233,7 +299,9 @@ namespace ControlFile
             else if (mode[0] + mode[1] + mode[2] == 2 && mode[2] == 0) { mode_str = "VisualAuditory"; }
             else if (mode[0] + mode[1] + mode[2] == 1 && mode[0] == 1) { mode_str = "Visual"; }
             else if (mode[0] + mode[1] + mode[2] == 1 && mode[1] == 1) { mode_str = "Auditory"; }
-
+            else if (mode[0] + mode[1] + mode[2] == 1 && mode[2] == 1) { mode_str = "Haptic"; }
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[1] == 0) { mode_str = "VisualHaptic"; }           
+            else if (mode[0] + mode[1] + mode[2] == 2 && mode[0] == 0) { mode_str = "AuditoryHaptic"; }
 
             return true;
 
